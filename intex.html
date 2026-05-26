@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Underplay</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-black text-white font-sans">
+
+<div class="flex min-h-screen">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-zinc-950 border-r border-zinc-800 p-6">
+    <h1 class="text-4xl font-black text-violet-500">
+      UNDERPLAY
+    </h1>
+
+    <p class="text-zinc-400 mt-2">
+      Trading Card Game
+    </p>
+
+    <div class="mt-10 space-y-3">
+
+      <button class="w-full text-left bg-zinc-900 p-4 rounded-2xl">
+        Home
+      </button>
+
+      <button class="w-full text-left bg-zinc-900 p-4 rounded-2xl">
+        Play
+      </button>
+
+      <button class="w-full text-left bg-violet-600 p-4 rounded-2xl">
+        Pack Shop
+      </button>
+
+      <button class="w-full text-left bg-zinc-900 p-4 rounded-2xl">
+        Collection
+      </button>
+
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="flex-1 p-8">
+
+    <div class="flex justify-between items-center mb-10">
+
+      <div>
+        <h2 class="text-6xl font-black">
+          Pack Shop
+        </h2>
+
+        <p class="text-zinc-400 mt-2">
+          Open packs and collect cards.
+        </p>
+      </div>
+
+      <div class="bg-zinc-900 border border-zinc-800 rounded-3xl px-6 py-4">
+        <p class="text-zinc-400">Tokens</p>
+
+        <h2 id="tokens" class="text-4xl font-black text-violet-400">
+          5000
+        </h2>
+      </div>
+
+    </div>
+
+    <!-- PACKS -->
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
+      <div class="bg-gradient-to-br from-yellow-400 to-orange-500 p-1 rounded-3xl">
+        <div class="bg-black rounded-3xl p-6">
+          <h3 class="text-3xl font-black">
+            Volt Pack
+          </h3>
+
+          <button onclick="openPack()"
+            class="mt-10 w-full bg-yellow-400 text-black font-black py-4 rounded-2xl">
+            OPEN - 500
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-cyan-400 to-blue-600 p-1 rounded-3xl">
+        <div class="bg-black rounded-3xl p-6">
+          <h3 class="text-3xl font-black">
+            Frost Pack
+          </h3>
+
+          <button onclick="openPack()"
+            class="mt-10 w-full bg-cyan-400 text-black font-black py-4 rounded-2xl">
+            OPEN - 500
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-orange-500 to-red-600 p-1 rounded-3xl">
+        <div class="bg-black rounded-3xl p-6">
+          <h3 class="text-3xl font-black">
+            Ember Pack
+          </h3>
+
+          <button onclick="openPack()"
+            class="mt-10 w-full bg-orange-500 text-black font-black py-4 rounded-2xl">
+            OPEN - 500
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-gradient-to-br from-violet-500 to-purple-700 p-1 rounded-3xl">
+        <div class="bg-black rounded-3xl p-6">
+          <h3 class="text-3xl font-black">
+            Void Pack
+          </h3>
+
+          <button onclick="openPack()"
+            class="mt-10 w-full bg-violet-500 text-white font-black py-4 rounded-2xl">
+            OPEN - 500
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COLLECTION -->
+    <div class="mt-12 bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
+
+      <h2 class="text-4xl font-black mb-6">
+        Your Collection
+      </h2>
+
+      <div id="collection"
+        class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+<script>
+
+let tokens = 5000;
+
+const cards = [
+  {
+    name: "Voltix",
+    rarity: "Basic",
+    color: "from-yellow-400 to-orange-500"
+  },
+
+  {
+    name: "Frostjaw",
+    rarity: "Rare",
+    color: "from-cyan-400 to-blue-600"
+  },
+
+  {
+    name: "Embera",
+    rarity: "Legendary",
+    color: "from-orange-500 to-red-600"
+  },
+
+  {
+    name: "Shadowlurk",
+    rarity: "Mythic",
+    color: "from-violet-500 to-purple-700"
+  },
+
+  {
+    name: "Dragonox",
+    rarity: "God",
+    color: "from-amber-400 to-orange-700"
+  },
+
+  {
+    name: "Voidrex",
+    rarity: "Secret",
+    color: "from-fuchsia-600 to-purple-900"
+  },
+
+  {
+    name: "Null Emperor",
+    rarity: "Impossibleun",
+    color: "from-gray-700 to-black"
+  }
+];
+
+function randomCard() {
+
+  const r = Math.random() * 100;
+
+  if (r < 60) return cards[0];
+  if (r < 82) return cards[1];
+  if (r < 93) return cards[2];
+  if (r < 97) return cards[3];
+  if (r < 99) return cards[4];
+  if (r < 99.8) return cards[5];
+
+  return cards[6];
+}
+
+function openPack() {
+
+  if (tokens < 500) {
+    alert("Not enough tokens!");
+    return;
+  }
+
+  tokens -= 500;
+
+  document.getElementById("tokens").innerText = tokens;
+
+  const card = randomCard();
+
+  const collection = document.getElementById("collection");
+
+  const div = document.createElement("div");
+
+  div.className =
+    `bg-gradient-to-br ${card.color} p-1 rounded-3xl`;
+
+  div.innerHTML = `
+    <div class="bg-black rounded-3xl p-4 text-center">
+      <p class="text-sm uppercase text-zinc-400">
+        ${card.rarity}
+      </p>
+
+      <h3 class="text-2xl font-black mt-3">
+        ${card.name}
+      </h3>
+    </div>
+  `;
+
+  collection.prepend(div);
+
+  if (card.rarity === "Impossibleun") {
+    alert("⚠ IMPOSSIBLEUN PULL ⚠");
+  }
+
+}
+
+</script>
+
+</body>
+</html>
