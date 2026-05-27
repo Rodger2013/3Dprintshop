@@ -263,9 +263,11 @@
 </section>
 
 <section class="pull-sim">
+  <h2 style="margin-bottom:15px; color:#ffd700;">Energy: <span id="energyCount">100</span> ⚡</h2>
+  <p style="margin-bottom:20px; color:#aaa;">Each pack costs 10 energy.</p>
   <h2 class="section-title">Pack Simulator</h2>
 
-  <button class="pull-btn" onclick="openPack()">Open Pack</button>
+  <button class="pull-btn" onclick="openPack()">Buy Pack • 10 Energy</button>
 
   <div class="pull-card" id="pullCard">
     <img id="pullImg" src="">
@@ -284,48 +286,87 @@
 <script>
 
 const pulls = [
-  // STATIC
-  { name:'Voltix', element:'Static', rarity:'basic', desc:'Fast electric fox creature.', img:'https://picsum.photos/400/400?101' },
-  { name:'Sparkbud', element:'Static', rarity:'basic', desc:'Tiny living spark.', img:'https://picsum.photos/400/400?102' },
-  { name:'Jolturtle', element:'Static', rarity:'rare', desc:'Heavy shock shell beast.', img:'https://picsum.photos/400/400?103' },
-  { name:'Plasmawing', element:'Static', rarity:'epic', desc:'Storm plasma dragon.', img:'https://picsum.photos/400/400?104' },
-  { name:'Zapexus', element:'Static', rarity:'legendary', desc:'Dragon of endless voltage.', img:'https://picsum.photos/400/400?105' },
-  { name:'Thunderlord', element:'Static', rarity:'mythic', desc:'King of lightning.', img:'https://picsum.photos/400/400?106' },
-  { name:'Zeuson', element:'Static', rarity:'god', desc:'God of thunder.', img:'https://picsum.photos/400/400?107' },
-  { name:'Eclipzap', element:'Static', rarity:'secret', desc:'Hidden electric orb.', img:'https://picsum.photos/400/400?108' },
-  { name:'Impossibleibun', element:'Static', rarity:'impossibleun', desc:'Beyond imagination.', img:'https://picsum.photos/400/400?109' },
-
-  // BLAZE
-  { name:'Emberpup', element:'Blaze', rarity:'basic', desc:'Playful fire puppy.', img:'https://picsum.photos/400/400?201' },
-  { name:'Torchick', element:'Blaze', rarity:'basic', desc:'Tiny burning bird.', img:'https://picsum.photos/400/400?202' },
-  { name:'Lavabite', element:'Blaze', rarity:'rare', desc:'Molten magma beast.', img:'https://picsum.photos/400/400?203' },
-  { name:'Volcannon', element:'Blaze', rarity:'epic', desc:'Shoots lava blasts.', img:'https://picsum.photos/400/400?204' },
-  { name:'Inferdragon', element:'Blaze', rarity:'legendary', desc:'Ancient inferno dragon.', img:'https://picsum.photos/400/400?205' },
-  { name:'Infernalis', element:'Blaze', rarity:'mythic', desc:'Blaze ruler.', img:'https://picsum.photos/400/400?206' },
-  { name:'Igniflare', element:'Blaze', rarity:'god', desc:'Fire god titan.', img:'https://picsum.photos/400/400?207' },
-  { name:'WorldBlaze', element:'Blaze', rarity:'secret', desc:'Burns worlds apart.', img:'https://picsum.photos/400/400?208' },
-  { name:'Infernal Colossus', element:'Blaze', rarity:'impossibleun', desc:'Ultimate inferno creature.', img:'https://picsum.photos/400/400?209' },
-
-  // SPLASH
-  { name:'Aquabub', element:'Splash', rarity:'basic', desc:'Tiny water spirit.', img:'https://picsum.photos/400/400?301' },
-  { name:'Splashfin', element:'Splash', rarity:'basic', desc:'Swift ocean swimmer.', img:'https://picsum.photos/400/400?302' },
-  { name:'Coralord', element:'Splash', rarity:'rare', desc:'Reef protector.', img:'https://picsum.photos/400/400?303' },
-  { name:'Cyclonova', element:'Splash', rarity:'epic', desc:'Master of tidal storms.', img:'https://picsum.photos/400/400?304' },
-  { name:'Poseidragon', element:'Splash', rarity:'legendary', desc:'Ocean emperor dragon.', img:'https://picsum.photos/400/400?305' },
-  { name:'Thalassar', element:'Splash', rarity:'mythic', desc:'Controls all seas.', img:'https://picsum.photos/400/400?306' },
-  { name:'Neptulon', element:'Splash', rarity:'god', desc:'God of oceans.', img:'https://picsum.photos/400/400?307' },
-  { name:'Voidsphere', element:'Splash', rarity:'secret', desc:'Hidden sea void.', img:'https://picsum.photos/400/400?308' },
-  { name:'Ocean Eternis', element:'Splash', rarity:'impossibleun', desc:'Infinite sea titan.', img:'https://picsum.photos/400/400?309' }
+  {
+    name: 'Voltix',
+    element: 'Static',
+    rarity: 'basic',
+    desc: 'Electric speed fox.',
+    img: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    name: 'Sparkbug',
+    element: 'Static',
+    rarity: 'rare',
+    desc: 'Tiny lightning insect.',
+    img: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    name: 'Plasmawing',
+    element: 'Static',
+    rarity: 'epic',
+    desc: 'Storm plasma dragon.',
+    img: 'https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    name: 'Zapexus',
+    element: 'Static',
+    rarity: 'legendary',
+    desc: 'Dragon of endless voltage.',
+    img: 'https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    name: 'Thunderlord',
+    element: 'Static',
+    rarity: 'mythic',
+    desc: 'King of storms.',
+    img: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    name: 'Zeuson',
+    element: 'Static',
+    rarity: 'god',
+    desc: 'God of thunder.',
+    img: 'https://images.unsplash.com/photo-1507146426996-ef05306b995a?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    name: 'Eclipzap',
+    element: 'Static',
+    rarity: 'secret',
+    desc: 'Hidden lightning sphere.',
+    img: 'https://images.unsplash.com/photo-1516939884455-1445c8652f83?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    name: 'Impossibleibun',
+    element: 'Static',
+    rarity: 'impossibleun',
+    desc: 'Beyond reality.',
+    img: 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=800&auto=format&fit=crop'
+  }
 ];
 
+let energy = 100;
+
 function openPack() {
-  const randomNumber = Math.random() * 100;
 
-  let rarityPool = 'basic';
+  if (energy < 10) {
+    alert('Not enough energy!');
+    return;
+  }
 
-  if (randomNumber > 99.995) {
-    rarityPool = 'impossibleun';
-  } else if (randomNumber > 99.9) {
+  energy -= 10;
+  document.getElementById('energyCount').innerText = energy;
+
+  const random = pulls[Math.floor(Math.random() * pulls.length)];
+
+  document.getElementById('pullCard').style.display = 'block';
+  document.getElementById('pullImg').src = random.img;
+  document.getElementById('pullName').innerText = random.name;
+  document.getElementById('pullDesc').innerText = random.desc;
+
+  const rarity = document.getElementById('pullRarity');
+  rarity.className = 'rarity ' + random.rarity;
+  rarity.innerText = random.rarity.toUpperCase();
+} else if (randomNumber > 99.9) {
     rarityPool = 'secret';
   } else if (randomNumber > 99.4) {
     rarityPool = 'god';
