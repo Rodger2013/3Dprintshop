@@ -2,245 +2,354 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Underplay</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #050505;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(90deg,#111,#1a1a1a,#111);
+      border-bottom: 3px solid #00bfff;
+    }
+
+    h1 {
+      font-size: 4rem;
+      color: #00bfff;
+      text-shadow: 0 0 20px #00bfff;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .elements {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .element-btn {
+      border: none;
+      padding: 25px;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .element-btn:hover {
+      transform: scale(1.06);
+    }
+
+    .static { background: linear-gradient(135deg,#ffe600,#ffb300); }
+    .blaze { background: linear-gradient(135deg,#ff5e00,#ff0000); }
+    .splash { background: linear-gradient(135deg,#00bfff,#0044ff); }
+    .void { background: linear-gradient(135deg,#5a00ff,#000000); }
+    .freeze { background: linear-gradient(135deg,#9be7ff,#00e1ff); }
+    .metal { background: linear-gradient(135deg,#999,#555); }
+    .bloom { background: linear-gradient(135deg,#00ff80,#008f3f); }
+    .light { background: linear-gradient(135deg,#fff7a1,#ffd700); color:black; }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin: 40px 0 20px;
+      color: #00bfff;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 25px;
+      padding: 30px;
+    }
+
+    .card {
+      background: #111;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid #333;
+      transition: 0.25s;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 0 20px rgba(255,255,255,0.25);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background: #222;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .rarity {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .basic { background:#555; }
+    .rare { background:#009dff; }
+    .epic { background:#a100ff; }
+    .legendary { background:#ffb700; color:black; }
+    .mythic { background:#ff006a; }
+    .god { background:#fff700; color:black; }
+    .secret { background:#00fff2; color:black; }
+    .impossibleun { background: linear-gradient(90deg,red,orange,yellow,green,blue,purple); }
+
+    .pull-sim {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .pull-btn {
+      border: none;
+      background: linear-gradient(90deg,#00bfff,#0044ff);
+      color: white;
+      font-size: 1.3rem;
+      padding: 18px 35px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .pull-card {
+      max-width: 350px;
+      margin: auto;
+      background: #111;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 3px solid #00bfff;
+      display: none;
+    }
+
+    .pull-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      color: #888;
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-black text-white font-sans">
+<header>
+  <h1>UNDERPLAY</h1>
+  <div class="subtitle">Collect • Evolve • Battle</div>
+</header>
 
-<div class="flex min-h-screen">
+<section>
+  <h2 class="section-title">Elements</h2>
+  <div class="elements">
+    <button class="element-btn static">Static ⚡</button>
+    <button class="element-btn blaze">Blaze 🔥</button>
+    <button class="element-btn splash">Splash 🌊</button>
+    <button class="element-btn void">Void 🌌</button>
+    <button class="element-btn freeze">Freeze ❄️</button>
+    <button class="element-btn metal">Metal ⚙️</button>
+    <button class="element-btn bloom">Bloom 🌿</button>
+    <button class="element-btn light">Light ✨</button>
+  </div>
+</section>
 
-  <!-- SIDEBAR -->
-  <aside class="w-64 bg-zinc-950 border-r border-zinc-800 p-6">
-    <h1 class="text-4xl font-black text-violet-500">
-      UNDERPLAY
-    </h1>
+<section>
+  <h2 class="section-title">Featured Cards</h2>
 
-    <p class="text-zinc-400 mt-2">
-      Trading Card Game
-    </p>
+  <div class="cards">
 
-    <div class="mt-10 space-y-3">
-
-      <button class="w-full text-left bg-zinc-900 p-4 rounded-2xl">
-        Home
-      </button>
-
-      <button class="w-full text-left bg-zinc-900 p-4 rounded-2xl">
-        Play
-      </button>
-
-      <button class="w-full text-left bg-violet-600 p-4 rounded-2xl">
-        Pack Shop
-      </button>
-
-      <button class="w-full text-left bg-zinc-900 p-4 rounded-2xl">
-        Collection
-      </button>
-
-    </div>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="flex-1 p-8">
-
-    <div class="flex justify-between items-center mb-10">
-
-      <div>
-        <h2 class="text-6xl font-black">
-          Pack Shop
-        </h2>
-
-        <p class="text-zinc-400 mt-2">
-          Open packs and collect cards.
-        </p>
+    <div class="card">
+      <img src="https://picsum.photos/400/400?1">
+      <div class="card-content">
+        <div class="rarity basic">Basic</div>
+        <h3>Voltix</h3>
+        <p>Fast electric fox creature filled with static energy.</p>
       </div>
-
-      <div class="bg-zinc-900 border border-zinc-800 rounded-3xl px-6 py-4">
-        <p class="text-zinc-400">Tokens</p>
-
-        <h2 id="tokens" class="text-4xl font-black text-violet-400">
-          5000
-        </h2>
-      </div>
-
     </div>
 
-    <!-- PACKS -->
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-
-      <div class="bg-gradient-to-br from-yellow-400 to-orange-500 p-1 rounded-3xl">
-        <div class="bg-black rounded-3xl p-6">
-          <h3 class="text-3xl font-black">
-            Volt Pack
-          </h3>
-
-          <button onclick="openPack()"
-            class="mt-10 w-full bg-yellow-400 text-black font-black py-4 rounded-2xl">
-            OPEN - 500
-          </button>
-        </div>
+    <div class="card">
+      <img src="https://picsum.photos/400/400?2">
+      <div class="card-content">
+        <div class="rarity epic">Epic</div>
+        <h3>Plasmawing</h3>
+        <p>A dragon that controls storms and plasma blasts.</p>
       </div>
-
-      <div class="bg-gradient-to-br from-cyan-400 to-blue-600 p-1 rounded-3xl">
-        <div class="bg-black rounded-3xl p-6">
-          <h3 class="text-3xl font-black">
-            Frost Pack
-          </h3>
-
-          <button onclick="openPack()"
-            class="mt-10 w-full bg-cyan-400 text-black font-black py-4 rounded-2xl">
-            OPEN - 500
-          </button>
-        </div>
-      </div>
-
-      <div class="bg-gradient-to-br from-orange-500 to-red-600 p-1 rounded-3xl">
-        <div class="bg-black rounded-3xl p-6">
-          <h3 class="text-3xl font-black">
-            Ember Pack
-          </h3>
-
-          <button onclick="openPack()"
-            class="mt-10 w-full bg-orange-500 text-black font-black py-4 rounded-2xl">
-            OPEN - 500
-          </button>
-        </div>
-      </div>
-
-      <div class="bg-gradient-to-br from-violet-500 to-purple-700 p-1 rounded-3xl">
-        <div class="bg-black rounded-3xl p-6">
-          <h3 class="text-3xl font-black">
-            Void Pack
-          </h3>
-
-          <button onclick="openPack()"
-            class="mt-10 w-full bg-violet-500 text-white font-black py-4 rounded-2xl">
-            OPEN - 500
-          </button>
-        </div>
-      </div>
-
     </div>
 
-    <!-- COLLECTION -->
-    <div class="mt-12 bg-zinc-950 border border-zinc-800 rounded-3xl p-6">
-
-      <h2 class="text-4xl font-black mb-6">
-        Your Collection
-      </h2>
-
-      <div id="collection"
-        class="grid grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="card">
+      <img src="https://picsum.photos/400/400?3">
+      <div class="card-content">
+        <div class="rarity legendary">Legendary</div>
+        <h3>Infernalis</h3>
+        <p>Ancient blaze beast born inside a volcano core.</p>
       </div>
-
     </div>
 
-  </main>
+    <div class="card">
+      <img src="https://picsum.photos/400/400?4">
+      <div class="card-content">
+        <div class="rarity mythic">Mythic</div>
+        <h3>Thalassar</h3>
+        <p>Controls entire oceans with one massive wave.</p>
+      </div>
+    </div>
 
-</div>
+    <div class="card">
+      <img src="https://picsum.photos/400/400?5">
+      <div class="card-content">
+        <div class="rarity god">God</div>
+        <h3>Neptulon</h3>
+        <p>The legendary god of all Splash creatures.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/400/400?6">
+      <div class="card-content">
+        <div class="rarity secret">Secret</div>
+        <h3>VoidSphere</h3>
+        <p>A hidden cosmic creature only seen by lucky players.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://picsum.photos/400/400?7">
+      <div class="card-content">
+        <div class="rarity impossibleun">Impossibleun</div>
+        <h3>Impossibleibun</h3>
+        <p>The rarest creature ever discovered in Underplay.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="pull-sim">
+  <h2 class="section-title">Pack Simulator</h2>
+
+  <button class="pull-btn" onclick="openPack()">Open Pack</button>
+
+  <div class="pull-card" id="pullCard">
+    <img id="pullImg" src="">
+    <div class="card-content">
+      <div id="pullRarity" class="rarity">Basic</div>
+      <h3 id="pullName">Voltix</h3>
+      <p id="pullDesc">Electric speed creature.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  UNDERPLAY © 2026
+</footer>
 
 <script>
 
-let tokens = 5000;
+const pulls = [
+  // STATIC
+  { name:'Voltix', element:'Static', rarity:'basic', desc:'Fast electric fox creature.', img:'https://picsum.photos/400/400?101' },
+  { name:'Sparkbud', element:'Static', rarity:'basic', desc:'Tiny living spark.', img:'https://picsum.photos/400/400?102' },
+  { name:'Jolturtle', element:'Static', rarity:'rare', desc:'Heavy shock shell beast.', img:'https://picsum.photos/400/400?103' },
+  { name:'Plasmawing', element:'Static', rarity:'epic', desc:'Storm plasma dragon.', img:'https://picsum.photos/400/400?104' },
+  { name:'Zapexus', element:'Static', rarity:'legendary', desc:'Dragon of endless voltage.', img:'https://picsum.photos/400/400?105' },
+  { name:'Thunderlord', element:'Static', rarity:'mythic', desc:'King of lightning.', img:'https://picsum.photos/400/400?106' },
+  { name:'Zeuson', element:'Static', rarity:'god', desc:'God of thunder.', img:'https://picsum.photos/400/400?107' },
+  { name:'Eclipzap', element:'Static', rarity:'secret', desc:'Hidden electric orb.', img:'https://picsum.photos/400/400?108' },
+  { name:'Impossibleibun', element:'Static', rarity:'impossibleun', desc:'Beyond imagination.', img:'https://picsum.photos/400/400?109' },
 
-const cards = [
-  {
-    name: "Voltix",
-    rarity: "Basic",
-    color: "from-yellow-400 to-orange-500"
-  },
+  // BLAZE
+  { name:'Emberpup', element:'Blaze', rarity:'basic', desc:'Playful fire puppy.', img:'https://picsum.photos/400/400?201' },
+  { name:'Torchick', element:'Blaze', rarity:'basic', desc:'Tiny burning bird.', img:'https://picsum.photos/400/400?202' },
+  { name:'Lavabite', element:'Blaze', rarity:'rare', desc:'Molten magma beast.', img:'https://picsum.photos/400/400?203' },
+  { name:'Volcannon', element:'Blaze', rarity:'epic', desc:'Shoots lava blasts.', img:'https://picsum.photos/400/400?204' },
+  { name:'Inferdragon', element:'Blaze', rarity:'legendary', desc:'Ancient inferno dragon.', img:'https://picsum.photos/400/400?205' },
+  { name:'Infernalis', element:'Blaze', rarity:'mythic', desc:'Blaze ruler.', img:'https://picsum.photos/400/400?206' },
+  { name:'Igniflare', element:'Blaze', rarity:'god', desc:'Fire god titan.', img:'https://picsum.photos/400/400?207' },
+  { name:'WorldBlaze', element:'Blaze', rarity:'secret', desc:'Burns worlds apart.', img:'https://picsum.photos/400/400?208' },
+  { name:'Infernal Colossus', element:'Blaze', rarity:'impossibleun', desc:'Ultimate inferno creature.', img:'https://picsum.photos/400/400?209' },
 
-  {
-    name: "Frostjaw",
-    rarity: "Rare",
-    color: "from-cyan-400 to-blue-600"
-  },
-
-  {
-    name: "Embera",
-    rarity: "Legendary",
-    color: "from-orange-500 to-red-600"
-  },
-
-  {
-    name: "Shadowlurk",
-    rarity: "Mythic",
-    color: "from-violet-500 to-purple-700"
-  },
-
-  {
-    name: "Dragonox",
-    rarity: "God",
-    color: "from-amber-400 to-orange-700"
-  },
-
-  {
-    name: "Voidrex",
-    rarity: "Secret",
-    color: "from-fuchsia-600 to-purple-900"
-  },
-
-  {
-    name: "Null Emperor",
-    rarity: "Impossibleun",
-    color: "from-gray-700 to-black"
-  }
+  // SPLASH
+  { name:'Aquabub', element:'Splash', rarity:'basic', desc:'Tiny water spirit.', img:'https://picsum.photos/400/400?301' },
+  { name:'Splashfin', element:'Splash', rarity:'basic', desc:'Swift ocean swimmer.', img:'https://picsum.photos/400/400?302' },
+  { name:'Coralord', element:'Splash', rarity:'rare', desc:'Reef protector.', img:'https://picsum.photos/400/400?303' },
+  { name:'Cyclonova', element:'Splash', rarity:'epic', desc:'Master of tidal storms.', img:'https://picsum.photos/400/400?304' },
+  { name:'Poseidragon', element:'Splash', rarity:'legendary', desc:'Ocean emperor dragon.', img:'https://picsum.photos/400/400?305' },
+  { name:'Thalassar', element:'Splash', rarity:'mythic', desc:'Controls all seas.', img:'https://picsum.photos/400/400?306' },
+  { name:'Neptulon', element:'Splash', rarity:'god', desc:'God of oceans.', img:'https://picsum.photos/400/400?307' },
+  { name:'Voidsphere', element:'Splash', rarity:'secret', desc:'Hidden sea void.', img:'https://picsum.photos/400/400?308' },
+  { name:'Ocean Eternis', element:'Splash', rarity:'impossibleun', desc:'Infinite sea titan.', img:'https://picsum.photos/400/400?309' }
 ];
 
-function randomCard() {
-
-  const r = Math.random() * 100;
-
-  if (r < 60) return cards[0];
-  if (r < 82) return cards[1];
-  if (r < 93) return cards[2];
-  if (r < 97) return cards[3];
-  if (r < 99) return cards[4];
-  if (r < 99.8) return cards[5];
-
-  return cards[6];
-}
-
 function openPack() {
+  const randomNumber = Math.random() * 100;
 
-  if (tokens < 500) {
-    alert("Not enough tokens!");
-    return;
+  let rarityPool = 'basic';
+
+  if (randomNumber > 99.995) {
+    rarityPool = 'impossibleun';
+  } else if (randomNumber > 99.9) {
+    rarityPool = 'secret';
+  } else if (randomNumber > 99.4) {
+    rarityPool = 'god';
+  } else if (randomNumber > 97) {
+    rarityPool = 'mythic';
+  } else if (randomNumber > 92) {
+    rarityPool = 'legendary';
+  } else if (randomNumber > 75) {
+    rarityPool = 'epic';
+  } else if (randomNumber > 45) {
+    rarityPool = 'rare';
   }
 
-  tokens -= 500;
+  const filtered = pulls.filter(card => card.rarity === rarityPool);
+  const random = filtered[Math.floor(Math.random() * filtered.length)];
 
-  document.getElementById("tokens").innerText = tokens;
+  document.getElementById('pullCard').style.display = 'block';
+  document.getElementById('pullImg').src = random.img;
+  document.getElementById('pullName').innerText = random.name + ' • ' + random.element;
+  document.getElementById('pullDesc').innerText = random.desc;
 
-  const card = randomCard();
-
-  const collection = document.getElementById("collection");
-
-  const div = document.createElement("div");
-
-  div.className =
-    `bg-gradient-to-br ${card.color} p-1 rounded-3xl`;
-
-  div.innerHTML = `
-    <div class="bg-black rounded-3xl p-4 text-center">
-      <p class="text-sm uppercase text-zinc-400">
-        ${card.rarity}
-      </p>
-
-      <h3 class="text-2xl font-black mt-3">
-        ${card.name}
-      </h3>
-    </div>
-  `;
-
-  collection.prepend(div);
-
-  if (card.rarity === "Impossibleun") {
-    alert("⚠ IMPOSSIBLEUN PULL ⚠");
-  }
-
+  const rarity = document.getElementById('pullRarity');
+  rarity.className = 'rarity ' + random.rarity;
+  rarity.innerText = random.rarity.toUpperCase();
 }
 
 </script>
