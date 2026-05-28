@@ -1,396 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Underplay</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNDERPLAY</title>
 
-    body {
-      background: #050505;
-      color: white;
-      overflow-x: hidden;
-    }
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      background: linear-gradient(90deg,#111,#1a1a1a,#111);
-      border-bottom: 3px solid #00bfff;
-    }
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
 
-    h1 {
-      font-size: 4rem;
-      color: #00bfff;
-      text-shadow: 0 0 20px #00bfff;
-    }
+header{
+padding:40px;
+text-align:center;
+background:linear-gradient(90deg,#111,#1a1a1a,#111);
+border-bottom:3px solid #ffe600;
+}
 
-    .subtitle {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #ccc;
-    }
+header h1{
+font-size:4rem;
+color:#ffe600;
+text-shadow:0 0 20px #ffe600;
+}
 
-    .elements {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
-      gap: 20px;
-      padding: 40px;
-    }
+header p{
+margin-top:10px;
+color:#aaa;
+}
 
-    .element-btn {
-      border: none;
-      padding: 25px;
-      border-radius: 20px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: white;
-      cursor: pointer;
-      transition: 0.25s;
-    }
+.energy{
+margin-top:20px;
+font-size:1.4rem;
+}
 
-    .element-btn:hover {
-      transform: scale(1.06);
-    }
+.shop{
+padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
 
-    .static { background: linear-gradient(135deg,#ffe600,#ffb300); }
-    .blaze { background: linear-gradient(135deg,#ff5e00,#ff0000); }
-    .splash { background: linear-gradient(135deg,#00bfff,#0044ff); }
-    .void { background: linear-gradient(135deg,#5a00ff,#000000); }
-    .freeze { background: linear-gradient(135deg,#9be7ff,#00e1ff); }
-    .metal { background: linear-gradient(135deg,#999,#555); }
-    .bloom { background: linear-gradient(135deg,#00ff80,#008f3f); }
-    .light { background: linear-gradient(135deg,#fff7a1,#ffd700); color:black; }
+.pack{
+background:#111;
+border-radius:25px;
+overflow:hidden;
+border:3px solid #222;
+transition:.25s;
+}
 
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin: 40px 0 20px;
-      color: #00bfff;
-    }
+.pack:hover{
+transform:translateY(-10px);
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 25px;
-      padding: 30px;
-    }
+.pack-top{
+padding:30px;
+text-align:center;
+font-size:2rem;
+font-weight:bold;
+}
 
-    .card {
-      background: #111;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 3px solid #333;
-      transition: 0.25s;
-      position: relative;
-    }
+.static{
+background:linear-gradient(135deg,#ffe600,#ffae00);
+color:black;
+}
 
-    .card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 0 20px rgba(255,255,255,0.25);
-    }
+.blaze{
+background:linear-gradient(135deg,#ff6600,#ff0000);
+}
 
-    .card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background: #222;
-    }
+.splash{
+background:linear-gradient(135deg,#00bfff,#0044ff);
+}
 
-    .card-content {
-      padding: 15px;
-    }
+.pack-body{
+padding:25px;
+}
 
-    .card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
-    }
+.buy-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:16px;
+font-size:1.1rem;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
 
-    .rarity {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      font-size: 0.9rem;
-    }
+.static-btn{
+background:#ffe600;
+}
 
-    .basic { background:#555; }
-    .rare { background:#009dff; }
-    .epic { background:#a100ff; }
-    .legendary { background:#ffb700; color:black; }
-    .mythic { background:#ff006a; }
-    .god { background:#fff700; color:black; }
-    .secret { background:#00fff2; color:black; }
-    .impossibleun { background: linear-gradient(90deg,red,orange,yellow,green,blue,purple); }
+.blaze-btn{
+background:#ff5e00;
+color:white;
+}
 
-    .pull-sim {
-      text-align: center;
-      padding: 50px 20px;
-    }
+.splash-btn{
+background:#00bfff;
+color:white;
+}
 
-    .pull-btn {
-      border: none;
-      background: linear-gradient(90deg,#00bfff,#0044ff);
-      color: white;
-      font-size: 1.3rem;
-      padding: 18px 35px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-bottom: 30px;
-    }
+.pull{
+padding:40px;
+text-align:center;
+}
 
-    .pull-card {
-      max-width: 350px;
-      margin: auto;
-      background: #111;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 3px solid #00bfff;
-      display: none;
-    }
+.card{
+max-width:400px;
+margin:auto;
+background:#111;
+border-radius:25px;
+overflow:hidden;
+border:4px solid #333;
+display:none;
+}
 
-    .pull-card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
+.card-art{
+height:300px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:3rem;
+font-weight:bold;
+}
 
-    footer {
-      text-align: center;
-      padding: 40px;
-      color: #888;
-    }
-  </style>
+.card-content{
+padding:20px;
+}
+
+.rarity{
+display:inline-block;
+padding:8px 14px;
+border-radius:999px;
+margin-bottom:15px;
+font-weight:bold;
+}
+
+.basic{
+background:#666;
+}
+
+.rare{
+background:#009dff;
+}
+
+.epic{
+background:#a100ff;
+}
+
+.legendary{
+background:#ffb700;
+color:black;
+}
+
+.mythic{
+background:#ff006a;
+}
+
+.god{
+background:#fff700;
+color:black;
+}
+
+.secret{
+background:#00fff2;
+color:black;
+}
+
+.impossibleun{
+background:linear-gradient(90deg,red,orange,yellow,green,blue,purple);
+}
+
+footer{
+padding:40px;
+text-align:center;
+color:#777;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>UNDERPLAY</h1>
-  <div class="subtitle">Collect • Evolve • Battle</div>
+<h1>UNDERPLAY</h1>
+<p>Collect • Open Packs • Pull Rare Cards</p>
+
+<div class="energy">
+Energy: <span id="energy">100</span> ⚡
+</div>
 </header>
 
-<section>
-  <h2 class="section-title">Elements</h2>
-  <div class="elements">
-    <button class="element-btn static">Static ⚡</button>
-    <button class="element-btn blaze">Blaze 🔥</button>
-    <button class="element-btn splash">Splash 🌊</button>
-    <button class="element-btn void">Void 🌌</button>
-    <button class="element-btn freeze">Freeze ❄️</button>
-    <button class="element-btn metal">Metal ⚙️</button>
-    <button class="element-btn bloom">Bloom 🌿</button>
-    <button class="element-btn light">Light ✨</button>
-  </div>
+<section class="shop">
+
+<div class="pack">
+<div class="pack-top static">
+STATIC PACK ⚡
+</div>
+
+<div class="pack-body">
+<p>Electric creatures and storm monsters.</p>
+
+<button class="buy-btn static-btn" onclick="buyPack('static')">
+BUY • 10 ENERGY
+</button>
+</div>
+</div>
+
+<div class="pack">
+<div class="pack-top blaze">
+BLAZE PACK 🔥
+</div>
+
+<div class="pack-body">
+<p>Fire creatures and lava beasts.</p>
+
+<button class="buy-btn blaze-btn" onclick="buyPack('blaze')">
+BUY • 10 ENERGY
+</button>
+</div>
+</div>
+
+<div class="pack">
+<div class="pack-top splash">
+SPLASH PACK 🌊
+</div>
+
+<div class="pack-body">
+<p>Ocean creatures and tidal gods.</p>
+
+<button class="buy-btn splash-btn" onclick="buyPack('splash')">
+BUY • 10 ENERGY
+</button>
+</div>
+</div>
+
 </section>
 
-<section>
-  <h2 class="section-title">Featured Cards</h2>
+<section class="pull">
 
-  <div class="cards">
+<div class="card" id="card">
 
-    <div class="card">
-      <img src="https://picsum.photos/400/400?1">
-      <div class="card-content">
-        <div class="rarity basic">Basic</div>
-        <h3>Voltix</h3>
-        <p>Fast electric fox creature filled with static energy.</p>
-      </div>
-    </div>
+<div class="card-art" id="cardArt">
+⚡
+</div>
 
-    <div class="card">
-      <img src="https://picsum.photos/400/400?2">
-      <div class="card-content">
-        <div class="rarity epic">Epic</div>
-        <h3>Plasmawing</h3>
-        <p>A dragon that controls storms and plasma blasts.</p>
-      </div>
-    </div>
+<div class="card-content">
 
-    <div class="card">
-      <img src="https://picsum.photos/400/400?3">
-      <div class="card-content">
-        <div class="rarity legendary">Legendary</div>
-        <h3>Infernalis</h3>
-        <p>Ancient blaze beast born inside a volcano core.</p>
-      </div>
-    </div>
+<div class="rarity" id="rarity">
+BASIC
+</div>
 
-    <div class="card">
-      <img src="https://picsum.photos/400/400?4">
-      <div class="card-content">
-        <div class="rarity mythic">Mythic</div>
-        <h3>Thalassar</h3>
-        <p>Controls entire oceans with one massive wave.</p>
-      </div>
-    </div>
+<h2 id="cardName">Voltix</h2>
 
-    <div class="card">
-      <img src="https://picsum.photos/400/400?5">
-      <div class="card-content">
-        <div class="rarity god">God</div>
-        <h3>Neptulon</h3>
-        <p>The legendary god of all Splash creatures.</p>
-      </div>
-    </div>
+<p id="cardDesc">
+Electric fox creature.
+</p>
 
-    <div class="card">
-      <img src="https://picsum.photos/400/400?6">
-      <div class="card-content">
-        <div class="rarity secret">Secret</div>
-        <h3>VoidSphere</h3>
-        <p>A hidden cosmic creature only seen by lucky players.</p>
-      </div>
-    </div>
+</div>
+</div>
 
-    <div class="card">
-      <img src="https://picsum.photos/400/400?7">
-      <div class="card-content">
-        <div class="rarity impossibleun">Impossibleun</div>
-        <h3>Impossibleibun</h3>
-        <p>The rarest creature ever discovered in Underplay.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section class="pull-sim">
-  <h2 style="margin-bottom:15px; color:#ffd700;">Energy: <span id="energyCount">100</span> ⚡</h2>
-  <p style="margin-bottom:20px; color:#aaa;">Each pack costs 10 energy.</p>
-  <h2 class="section-title">Pack Simulator</h2>
-
-  <button class="pull-btn" onclick="openPack()">Buy Pack • 10 Energy</button>
-
-  <div class="pull-card" id="pullCard">
-    <img id="pullImg" src="">
-    <div class="card-content">
-      <div id="pullRarity" class="rarity">Basic</div>
-      <h3 id="pullName">Voltix</h3>
-      <p id="pullDesc">Electric speed creature.</p>
-    </div>
-  </div>
 </section>
 
 <footer>
-  UNDERPLAY © 2026
+UNDERPLAY © 2026
 </footer>
 
 <script>
 
-const pulls = [
-  {
-    name: 'Voltix',
-    element: 'Static',
-    rarity: 'basic',
-    desc: 'Electric speed fox.',
-    img: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    name: 'Sparkbug',
-    element: 'Static',
-    rarity: 'rare',
-    desc: 'Tiny lightning insect.',
-    img: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    name: 'Plasmawing',
-    element: 'Static',
-    rarity: 'epic',
-    desc: 'Storm plasma dragon.',
-    img: 'https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    name: 'Zapexus',
-    element: 'Static',
-    rarity: 'legendary',
-    desc: 'Dragon of endless voltage.',
-    img: 'https://images.unsplash.com/photo-1511044568932-338cba0ad803?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    name: 'Thunderlord',
-    element: 'Static',
-    rarity: 'mythic',
-    desc: 'King of storms.',
-    img: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    name: 'Zeuson',
-    element: 'Static',
-    rarity: 'god',
-    desc: 'God of thunder.',
-    img: 'https://images.unsplash.com/photo-1507146426996-ef05306b995a?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    name: 'Eclipzap',
-    element: 'Static',
-    rarity: 'secret',
-    desc: 'Hidden lightning sphere.',
-    img: 'https://images.unsplash.com/photo-1516939884455-1445c8652f83?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    name: 'Impossibleibun',
-    element: 'Static',
-    rarity: 'impossibleun',
-    desc: 'Beyond reality.',
-    img: 'https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=800&auto=format&fit=crop'
-  }
-];
-
 let energy = 100;
 
-function openPack() {
+const staticCards = [
+{
+name:"Voltix",
+rarity:"basic",
+emoji:"⚡",
+desc:"Electric fox creature.",
+color:"#ffe600"
+},
+{
+name:"Sparkbug",
+rarity:"rare",
+emoji:"⚡",
+desc:"Tiny lightning insect.",
+color:"#00bfff"
+},
+{
+name:"Plasmawing",
+rarity:"epic",
+emoji:"⚡",
+desc:"Storm dragon.",
+color:"#a100ff"
+},
+{
+name:"Zapexus",
+rarity:"legendary",
+emoji:"⚡",
+desc:"Voltage dragon.",
+color:"#ffb700"
+},
+{
+name:"Thunderlord",
+rarity:"mythic",
+emoji:"⚡",
+desc:"King of storms.",
+color:"#ff006a"
+},
+{
+name:"Zeuson",
+rarity:"god",
+emoji:"⚡",
+desc:"God of thunder.",
+color:"#fff700"
+},
+{
+name:"Eclipzap",
+rarity:"secret",
+emoji:"⚡",
+desc:"Hidden storm creature.",
+color:"#00fff2"
+},
+{
+name:"Impossibleibun",
+rarity:"impossibleun",
+emoji:"🌈",
+desc:"Impossible electric being.",
+color:"#ff00ff"
+}
+];
 
-  if (energy < 10) {
-    alert('Not enough energy!');
-    return;
-  }
+const blazeCards = [
+{
+name:"Emberpup",
+rarity:"basic",
+emoji:"🔥",
+desc:"Tiny fire puppy.",
+color:"#ff6600"
+},
+{
+name:"Lavabite",
+rarity:"rare",
+emoji:"🔥",
+desc:"Magma wolf.",
+color:"#ff3300"
+},
+{
+name:"Volcannon",
+rarity:"epic",
+emoji:"🔥",
+desc:"Explosive lava titan.",
+color:"#a100ff"
+},
+{
+name:"Inferdragon",
+rarity:"legendary",
+emoji:"🔥",
+desc:"Ancient inferno dragon.",
+color:"#ffb700"
+},
+{
+name:"Infernalis",
+rarity:"mythic",
+emoji:"🔥",
+desc:"Blaze ruler.",
+color:"#ff006a"
+},
+{
+name:"Igniflare",
+rarity:"god",
+emoji:"🔥",
+desc:"God of flames.",
+color:"#fff700"
+},
+{
+name:"WorldBlaze",
+rarity:"secret",
+emoji:"🔥",
+desc:"Burns worlds apart.",
+color:"#00fff2"
+},
+{
+name:"Infernal Colossus",
+rarity:"impossibleun",
+emoji:"🌈",
+desc:"Ultimate fire monster.",
+color:"#ff00ff"
+}
+];
 
-  energy -= 10;
-  document.getElementById('energyCount').innerText = energy;
+const splashCards = [
+{
+name:"Aquabub",
+rarity:"basic",
+emoji:"🌊",
+desc:"Tiny water spirit.",
+color:"#00bfff"
+},
+{
+name:"Wavefin",
+rarity:"rare",
+emoji:"🌊",
+desc:"Fast ocean hunter.",
+color:"#0088ff"
+},
+{
+name:"Cyclonova",
+rarity:"epic",
+emoji:"🌊",
+desc:"Tidal storm beast.",
+color:"#a100ff"
+},
+{
+name:"Poseidragon",
+rarity:"legendary",
+emoji:"🌊",
+desc:"Ocean emperor dragon.",
+color:"#ffb700"
+},
+{
+name:"Thalassar",
+rarity:"mythic",
+emoji:"🌊",
+desc:"Controls all seas.",
+color:"#ff006a"
+},
+{
+name:"Neptulon",
+rarity:"god",
+emoji:"🌊",
+desc:"God of oceans.",
+color:"#fff700"
+},
+{
+name:"Voidsphere",
+rarity:"secret",
+emoji:"🌊",
+desc:"Hidden sea void.",
+color:"#00fff2"
+},
+{
+name:"Ocean Eternis",
+rarity:"impossibleun",
+emoji:"🌈",
+desc:"Infinite sea titan.",
+color:"#ff00ff"
+}
+];
 
-  const random = pulls[Math.floor(Math.random() * pulls.length)];
+function buyPack(type){
 
-  document.getElementById('pullCard').style.display = 'block';
-  document.getElementById('pullImg').src = random.img;
-  document.getElementById('pullName').innerText = random.name;
-  document.getElementById('pullDesc').innerText = random.desc;
+if(energy < 10){
+alert("Not enough energy!");
+return;
+}
 
-  const rarity = document.getElementById('pullRarity');
-  rarity.className = 'rarity ' + random.rarity;
-  rarity.innerText = random.rarity.toUpperCase();
-} else if (randomNumber > 99.9) {
-    rarityPool = 'secret';
-  } else if (randomNumber > 99.4) {
-    rarityPool = 'god';
-  } else if (randomNumber > 97) {
-    rarityPool = 'mythic';
-  } else if (randomNumber > 92) {
-    rarityPool = 'legendary';
-  } else if (randomNumber > 75) {
-    rarityPool = 'epic';
-  } else if (randomNumber > 45) {
-    rarityPool = 'rare';
-  }
+energy -= 10;
 
-  const filtered = pulls.filter(card => card.rarity === rarityPool);
-  const random = filtered[Math.floor(Math.random() * filtered.length)];
+document.getElementById("energy").innerText = energy;
 
-  document.getElementById('pullCard').style.display = 'block';
-  document.getElementById('pullImg').src = random.img;
-  document.getElementById('pullName').innerText = random.name + ' • ' + random.element;
-  document.getElementById('pullDesc').innerText = random.desc;
+let cards;
 
-  const rarity = document.getElementById('pullRarity');
-  rarity.className = 'rarity ' + random.rarity;
-  rarity.innerText = random.rarity.toUpperCase();
+if(type === "static"){
+cards = staticCards;
+}
+
+if(type === "blaze"){
+cards = blazeCards;
+}
+
+if(type === "splash"){
+cards = splashCards;
+}
+
+const card = cards[Math.floor(Math.random() * cards.length)];
+
+document.getElementById("card").style.display = "block";
+
+document.getElementById("cardArt").innerText = card.emoji;
+
+document.getElementById("cardArt").style.background = card.color;
+
+document.getElementById("cardName").innerText = card.name;
+
+document.getElementById("cardDesc").innerText = card.desc;
+
+const rarity = document.getElementById("rarity");
+
+rarity.className = "rarity " + card.rarity;
+
+rarity.innerText = card.rarity.toUpperCase();
+
 }
 
 </script>
