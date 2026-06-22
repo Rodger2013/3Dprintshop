@@ -1,64 +1,304 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>PrintHub</title>
+
+<title>3Dprintshop</title>
 
 <style>
+
+
 body{
-font-family:Arial;
-background:#f5f5f5;
-padding:30px;
+
+font-family:Arial, sans-serif;
+margin:0;
+background:#f4f4f4;
+
 }
 
-.box{
-background:white;
-padding:20px;
-margin:15px;
-border-radius:10px;
+
+/* top logo */
+
+.logo{
+
+position:absolute;
+top:20px;
+left:25px;
+font-size:28px;
+font-weight:bold;
+
 }
+
+
+.blue{
+
+color:blue;
+
+}
+
+
+.red{
+
+color:red;
+
+}
+
+
+
+header{
+
+background:white;
+height:90px;
+padding:20px;
+border-bottom:5px solid yellow;
+
+}
+
+
+
+
+/* moving line */
+
+.news{
+
+overflow:hidden;
+white-space:nowrap;
+background:black;
+color:white;
+padding:15px;
+border-bottom:5px solid yellow;
+
+}
+
+
+.news span{
+
+display:inline-block;
+
+animation:move 15s linear infinite;
+
+}
+
+
+
+@keyframes move{
+
+
+from{
+
+transform:translateX(100%);
+
+}
+
+
+to{
+
+transform:translateX(-100%);
+
+}
+
+
+}
+
+
+
+
+
+.section{
+
+
+padding:30px;
+
+border-bottom:5px solid yellow;
+
+
+}
+
+
+
+
+.card{
+
+
+background:white;
+
+padding:20px;
+
+margin:15px;
+
+border-radius:12px;
+
+
+box-shadow:0 0 5px gray;
+
+
+}
+
+
+
 
 button{
-padding:10px;
+
+
+padding:12px;
+
+background:black;
+
+color:white;
+
+border:none;
+
 cursor:pointer;
+
+
 }
 
+
+
 input{
+
+
 padding:10px;
+
 margin:5px;
+
+
 }
+
+
 
 </style>
 
+
 </head>
+
 
 
 <body>
 
 
-<h1>PrintHub</h1>
 
-<h2>3D Printed Products</h2>
+<header>
 
 
-<div id="shop" class="box">
+<div class="logo">
 
-<h2>No items for sale yet</h2>
+<span class="blue">3D</span><span class="red">printshop</span>
 
-<p>Check back soon!</p>
 
 </div>
 
 
 
-<hr>
+</header>
 
 
-<h2>Owner Admin</h2>
-
-<p>Only business owners can add products</p>
 
 
-<div class="box">
+
+<div class="news">
+
+
+<span>
+
+
+🔥 New Prints Coming Soon • 🚀 New Releases Weekly • 🛠 Custom 3D Designs • ⭐ Premium Prints • 🎨 New Colors • 📦 Fast Shipping
+
+
+</span>
+
+
+</div>
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>New Releases</h2>
+
+
+<div id="products">
+
+
+<h3>No items for sale yet</h3>
+
+<p>Check back soon!</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>Other Stuff</h2>
+
+
+
+<div class="card">
+
+<h3>About Us</h3>
+
+<p>
+
+We create custom 3D printed products.
+
+</p>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>Custom Orders</h3>
+
+<p>
+
+More features coming soon.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>Owner Area</h2>
+
+
+<p>
+
+Only business owners can add products.
+
+</p>
+
 
 
 <input id="name" placeholder="Product name">
@@ -67,43 +307,55 @@ margin:5px;
 <input id="price" placeholder="Price">
 
 
+
 <button onclick="addProduct()">
 
-Add 3D Print
+Add Product
 
 </button>
+
 
 
 </div>
 
 
 
+
+
+
+
+
 <script>
 
 
-let products = [];
+let products=[];
+
 
 
 
 function addProduct(){
 
 
-let name =
-document.getElementById("name").value;
+let name=document.getElementById("name").value;
 
 
-let price =
-document.getElementById("price").value;
+let price=document.getElementById("price").value;
+
 
 
 
 if(name=="" || price==""){
 
+
 alert("Fill everything");
+
 
 return;
 
+
 }
+
+
 
 
 
@@ -117,11 +369,6 @@ price:price
 
 
 
-document.getElementById("name").value="";
-
-document.getElementById("price").value="";
-
-
 
 showProducts();
 
@@ -131,39 +378,30 @@ showProducts();
 
 
 
+
+
 function showProducts(){
 
 
-let shop =
-document.getElementById("shop");
+let area=document.getElementById("products");
 
 
+area.innerHTML="";
 
-if(products.length===0){
-
-
-shop.innerHTML=
-
-"<h2>No items for sale yet</h2><p>Check back soon!</p>";
-
-return;
-
-}
-
-
-
-shop.innerHTML="";
 
 
 
 products.forEach(product=>{
 
 
-shop.innerHTML += `
+area.innerHTML += `
 
-<div class="box">
+
+<div class="card">
+
 
 <h2>${product.name}</h2>
+
 
 <p>$${product.price}</p>
 
@@ -175,12 +413,16 @@ Buy
 </button>
 
 
+
 </div>
+
 
 `;
 
 
+
 });
+
 
 
 }
@@ -191,6 +433,8 @@ Buy
 
 
 
+
 </body>
+
 
 </html>
