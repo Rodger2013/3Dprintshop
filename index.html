@@ -631,3 +631,302 @@ color:green;
 
 
 </style>
+<!-- FEATURED STORE SLIDESHOW -->
+
+<div class="featuredTitle">
+
+Featured
+
+</div>
+
+
+
+<div class="featuredSlider">
+
+
+<div id="featuredCard">
+
+
+<img src="YOUR_IMAGE_LINK_HERE">
+
+
+<h2>Spiral Cone Fidget</h2>
+
+
+</div>
+
+
+
+<div class="dots">
+
+<span onclick="showSlide(0)">●</span>
+
+<span onclick="showSlide(1)">●</span>
+
+<span onclick="showSlide(2)">●</span>
+
+<span onclick="showSlide(3)">●</span>
+
+<span onclick="showSlide(4)">●</span>
+
+<span onclick="showSlide(5)">●</span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<!-- NEW RELEASES -->
+
+
+<div class="releaseSection">
+
+
+<h1>New Releases</h1>
+
+
+
+<div class="releaseCard">
+
+
+<img src="YOUR_IMAGE_LINK_HERE">
+
+
+<h2>Spiral Cone Fidget</h2>
+
+
+<h3>$1.50</h3>
+
+
+
+<p>
+A satisfying spiral cone fidget that you can spin and play with.
+</p>
+
+
+
+<h3>Colors:</h3>
+
+
+<p>
+
+🔴 Red
+
+<br>
+
+🟡 Sunflower Yellow
+
+<br>
+
+🟢 Bamboo Green
+
+<br>
+
+⚪ Jade White
+
+<br>
+
+🔵 Cyan
+
+</p>
+
+
+
+<button>
+
+Buy Now
+
+</button>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<style>
+
+
+.featuredTitle{
+
+font-size:35px;
+
+font-weight:bold;
+
+padding:20px;
+
+border-bottom:5px solid yellow;
+
+}
+
+
+
+.featuredSlider{
+
+background:white;
+
+padding:25px;
+
+text-align:center;
+
+border-bottom:5px solid yellow;
+
+}
+
+
+
+.featuredSlider img{
+
+width:300px;
+
+height:250px;
+
+object-fit:cover;
+
+border-radius:15px;
+
+}
+
+
+
+.dots{
+
+font-size:25px;
+
+margin-top:15px;
+
+}
+
+
+
+.dots span{
+
+cursor:pointer;
+
+margin:8px;
+
+}
+
+
+
+.releaseSection{
+
+padding:25px;
+
+border-bottom:5px solid yellow;
+
+}
+
+
+
+.releaseCard{
+
+background:white;
+
+padding:20px;
+
+border-radius:15px;
+
+}
+
+
+
+.releaseCard img{
+
+width:300px;
+
+height:300px;
+
+object-fit:cover;
+
+border-radius:15px;
+
+}
+
+
+
+button{
+
+padding:12px;
+
+cursor:pointer;
+
+}
+
+
+</style>
+
+
+
+
+
+
+
+<script>
+
+
+let featuredItems=[
+
+"Spiral Cone Fidget",
+
+"New 3D Print",
+
+"Custom Print",
+
+"Limited Release",
+
+"Popular Item",
+
+"Coming Soon"
+
+];
+
+
+
+let slide=0;
+
+
+
+function showSlide(num){
+
+slide=num;
+
+document.querySelector("#featuredCard h2").innerHTML = featuredItems[slide];
+
+}
+
+
+
+setInterval(()=>{
+
+
+slide++;
+
+
+if(slide>=featuredItems.length){
+
+slide=0;
+
+}
+
+
+document.querySelector("#featuredCard h2").innerHTML = featuredItems[slide];
+
+
+},4000);
+
+
+
+</script>
